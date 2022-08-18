@@ -49,6 +49,9 @@ import org.quiltmc.qsl.lifecycle.api.client.event.ClientLifecycleEvents;
 import org.quiltmc.qsl.lifecycle.api.client.event.ClientWorldTickEvents;
 
 import java.io.File;
+import java.io.IOException;
+
+import dev.lambdaurora.lambdamap.map.temparyMarker.emc.*;
 
 /**
  * Represents the LambdaMap mod.
@@ -108,7 +111,11 @@ public class LambdaMap implements ClientModInitializer, ClientLifecycleEvents.Re
 		if (this.map.updatePlayerViewPos(client.player.getBlockX(), client.player.getBlockZ(), this.hud.getMovementThreshold())) {
 			this.hud.markDirty();
 		}
-
+		try {
+			GetPlayers.runGetPlayers();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
 		this.map.tick();
 		this.updateChunks(world, client.player);
 
@@ -180,6 +187,7 @@ public class LambdaMap implements ClientModInitializer, ClientLifecycleEvents.Re
 	}
 
 	public void updateChunk(World world, int chunkX, int chunkZ) {
+
 		int chunkStartX = ChunkSectionPos.getBlockCoord(chunkX);
 		int chunkStartZ = ChunkSectionPos.getBlockCoord(chunkZ);
 		int mapChunkStartX = chunkStartX & 127;

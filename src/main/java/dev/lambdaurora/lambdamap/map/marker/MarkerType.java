@@ -63,7 +63,7 @@ public class MarkerType {
 	private final float vMax;
 	private final boolean player;
 
-	MarkerType(String id, RenderLayer renderLayer, float uMin, float vMin, float uMax, float vMax, boolean player) {
+	public MarkerType(String id, RenderLayer renderLayer, float uMin, float vMin, float uMax, float vMax, boolean player) {
 		this.id = id;
 		this.renderLayer = renderLayer;
 		this.uMin = uMin;

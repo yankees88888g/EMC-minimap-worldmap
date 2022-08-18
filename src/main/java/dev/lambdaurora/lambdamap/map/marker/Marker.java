@@ -59,6 +59,9 @@ public class Marker {
 		this.name = name;
 	}
 
+	public Marker(MarkerType type, MarkerSource source, int x, int y, int z, Float aFloat, Text of) {
+	}
+
 	public MarkerType getType() {
 		return this.type;
 	}
